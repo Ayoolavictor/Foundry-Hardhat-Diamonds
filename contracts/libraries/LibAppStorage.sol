@@ -3,8 +3,7 @@ pragma solidity ^0.8.19;
 import {LibDiamond} from "../libraries/LibDiamond.sol";
 
 library LibAppStorage {
-    bytes32 constant STORAGE_POSITION =
-        keccak256("diamond.standard.app.storage");
+
 
     struct AppStorage {
         mapping(address => uint256) stakedERC20;
@@ -26,9 +25,8 @@ library LibAppStorage {
     }
 
     function appStorage() internal pure returns (AppStorage storage ds) {
-        bytes32 position = STORAGE_POSITION;
         assembly {
-            ds.slot := position
+              ds.slot := 0
         }
     }
 }
